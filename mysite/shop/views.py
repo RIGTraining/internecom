@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.views.generic import TemplateView, View, CreateView, DetailView,FormView
+from django.urls import reverse_lazy
 # Create your views here.
 # Import necessary modules and models
 from django.shortcuts import render, redirect
@@ -103,9 +105,9 @@ def addtowhitlist(request):
     return JsonResponse({'status':'success'})
 
 def whitelistview(request):
-    
-    context = {}
-    return render(request, 'shop.html', context)
+    white_list = Wishlist.objects.filter(usr = request.user)
+    context = {'white_list':white_list}
+    return render(request, 'wishlist.html', context)
 
 #Add to Cart Function
 def addtocart(request):
@@ -130,6 +132,29 @@ def addtocart(request):
     else:
         cart_obj = Cart.objects.create(total=0, usr=request.user)
         request.session['cart_id'] = cart_obj.id
+        subtotal = int(quantity) * product_obj.sell_price
+        item_filter = Items.objects.filter(id=product_id)
+        cartproduct = CartProduct.objects.create(cart=cart_obj, product=product_obj,rate=product_obj.sell_price, quantity=int(quantity), subtotal=subtotal)
+        cart_obj.total += subtotal
+        cart_obj.save()
+        
     
     return JsonResponse({'status':'success'})
 
+
+def cartview(request):
+    cart_id = request.session.get("cart_id", None)
+    cart = Cart.objects.get(id=cart_id)
+    context = {'cart':cart}
+    
+    
+    return render(request, 'cartview.html', context)
+
+def clearcart(request):
+    cart_id = request.session.get("cart_id", None)
+    if cart_id:
+        cart = Cart.objects.get(id=cart_id)
+        cart.cartproduct_set.all().delete()
+        cart.total =0
+        cart.save()
+        return JsonResponse({'status':'success'})

@@ -14,6 +14,9 @@ urlpatterns = [
     path('',shopview, name='shopview'), #Shop View
     path('addtowhitlist/', addtowhitlist, name='addtowhitlist'), #addtowhitlist
     path('addtocart/', addtocart, name='addtocart'), #addtocart
+    path('whitelistview/', whitelistview, name='whitelistview'), #whitelistview
+    path('cartview/', cartview, name='cartview'), #cartview
+    path('clearcart/', clearcart, name='clearcart'), #clearcart
 ]
 
 

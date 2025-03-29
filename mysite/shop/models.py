@@ -111,6 +111,17 @@ class Order(models.Model):
     def __str__(self):
         return "Order : " + str(self.id)
 
+class ItemOrder(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    discount_code = models.CharField(max_length=255, blank=True, null=True)
+    country = models.CharField(max_length=255, blank=True, null=True)
+    state = models.CharField(max_length=255, blank=True, null=True)
+    address = models.TextField()
+    status = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+
 class Wishlist(models.Model):
     usr = models.ForeignKey(User, on_delete=models.CASCADE)
     item = models.ForeignKey(Items, on_delete=models.CASCADE)

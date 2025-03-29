@@ -18,7 +18,7 @@ admin.site.register(Cart)
 admin.site.register(CartProduct)
 admin.site.register(ItmColor)
 admin.site.register(ItmSize)
-admin.site.register(Order)
+admin.site.register(ItemOrder)
 admin.site.register(Wishlist)
 
 
