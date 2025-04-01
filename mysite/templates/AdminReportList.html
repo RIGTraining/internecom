@@ -41,7 +41,10 @@
                                         <td class="stock text-center">
                                             <span class="in-stock">{{i.address}}</span>
                                         </td>
-                                        <td class="product-subtotal text-center"><button type="button" class="btn btn-small">View Details</button></td>
+                                        <td class="product-subtotal text-center">
+                                            <!-- <button type="button" class="btn btn-small">View Details</button> -->
+                                            <a href="{% url 'OrderDetailsView' i.id %}" class="btn btn-small">View Details</a>
+                                        </td>
                                     </tr>
                                     {% endfor %}
 

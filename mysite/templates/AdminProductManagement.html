@@ -1,0 +1,194 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <!--Sidebar-->
+        <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar filterbar">
+            <div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
+            <div class="sidebar_tags">
+                <!--Categories-->
+                <div class="sidebar_widget categories filter-widget">
+                    <div class="widget-title"><h2>Categories</h2></div>
+                    <div class="widget-content">
+                        <ul class="sidebar_categories">
+                            {% for p in cat.subcategory_set.all %}
+                            <li class="level1 sub-level"><a href="#;" class="site-nav">Clothing</a>
+                                <ul class="sublinks">
+                                    <li class="level2"><a href="#;" class="site-nav">Men</a></li>
+                                    <li class="level2"><a href="#;" class="site-nav">Women</a></li>
+                                    <li class="level2"><a href="#;" class="site-nav">Child</a></li>
+                                    <li class="level2"><a href="#;" class="site-nav">View All Clothing</a></li>
+                                </ul>
+                            </li>
+                            {% endfor %}
+                            
+                            
+                            <li class="lvl-1"><a href="#" class="btn btn--small"
+                                 data-toggle="modal"
+                                data-target="#newcategorymodel">New Categories</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <!--Categories-->
+               
+                
+                <div class="sidebar_widget static-banner">
+                    <img src="{% static 'assets/images/side-banner-2.jpg' %}" alt="" />
+                </div>
+              
+            </div>
+        </div>
+        <!--End Sidebar-->
+        <!--Main Content-->
+        <div class="col-12 col-sm-12 col-md-9 col-lg-9 main-col">
+            
+            <hr>
+            <div class="productList">
+                <!--Toolbar-->
+                <button type="button" class="btn btn-filter d-block d-md-none d-lg-none"> Product Filters</button>
+                <div class="toolbar">
+                    <div class="filters-toolbar-wrapper">
+                        <div class="row">
+                            <div class="col-4 col-md-4 col-lg-4 filters-toolbar__item collection-view-as d-flex justify-content-start align-items-center">
+                                <a href="#" title="Grid View" class="change-view change-view--active">
+                                    <img src="{% static 'assets/images/grid.jpg' %}" alt="Grid" />
+                                </a>
+                                <a href="#" title="List View" class="change-view">
+                                    <img src="{% static 'assets/images/list.jpg' %}" alt="List" />
+                                </a>
+                            </div>
+                            <div class="col-4 col-md-4 col-lg-4 text-center filters-toolbar__item filters-toolbar__item--count d-flex justify-content-center align-items-center">
+                                <span class="filters-toolbar__product-count">Showing: 22</span>
+                            </div>
+                            <div class="col-4 col-md-4 col-lg-4 text-right">
+                                <div class="filters-toolbar__item">
+                                      <label for="SortBy" class="hidden">Sort</label>
+                                      <select name="SortBy" id="SortBy" class="filters-toolbar__input filters-toolbar__input--sort">
+                                        <option value="title-ascending" selected="selected">Sort</option>
+                                        <option>Best Selling</option>
+                                        
+                                      </select>
+                                      <input class="collection-header__default-sort" type="hidden" value="manual">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--End Toolbar-->
+                <div class="list-view-items grid--view-items">
+
+                    {% for i in itm %}
+                    <!--ListView Item-->
+                    <div class="list-product list-view-item">
+                        <div class="list-view-item__image-column">
+                            <div class="list-view-item__image-wrapper">
+                                <!-- Image -->
+                                <a href="#"><img class="list-view-item__image blur-up lazyload" data-src="{{i.photo.url}}" src="{{i.photo.url}}" alt="image" title="product"></a>
+                                <!-- End Image -->
+                            </div>
+                        </div>
+                        <div class="list-view-item__title-column">
+                            <div class="h4 grid-view-item__title"><a href="#">{{i.item_name}}</a></div>
+                            <!-- Product Review -->
+                            <p class="product-review"><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i></p>
+                            <!-- End Product Review -->
+                            <!-- Sort Description -->
+                            <p>{{i.itm_description}}</p>
+                            <!-- End Sort Description -->
+                            <!-- Price -->
+                            <p class="product-price grid-view-item__meta">
+                                <!-- <span class="old-price">sell_price</span> -->
+                                <span class="product-price__price product-price__sale"><span class="money">{{i.sell_price}}</span></span>
+                            </p>
+                            <!-- End Price -->
+                            <form class="variants" action="#">
+                                <button class="btn btn--small" type="button">Select Options</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!--End ListView Item-->
+                    {% endfor %}
+                    
+                    
+                </div>
+            </div>
+            <div class="infinitpaginOuter">
+                <div class="infinitpagin">	
+                    <a href="#" class="btn loadMore">Load More</a>
+                </div>
+            </div>
+        </div>
+        <!--End Main Content-->
+    </div>
+</div>
+
+
+<!--Quick View popup-->
+<div class="modal fade quick-view-popup" id="newcategorymodel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="ProductSection-product-template"
+                    class="product-template__container prstyle1">
+                    <div class="product-single">
+                        <!-- Start model close -->
+                        <a href="javascript:void()" data-dismiss="modal"
+                            class="model-close-btn pull-right" title="close"><span
+                                class="icon icon anm anm-times-l"></span></a>
+                        <!-- End model close -->
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <h4 class="product-single__title">
+                                    New Category</h4>
+                                <div class="product-details-img">
+                                    <div class="pl-20">
+                                        
+                                <input type="text" name="maincate" id="">
+                                <button type="button" class="btn btn-addto-cart mt-2 newCatBtn">Create Category</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+                                <div class="product-single__meta">
+                                    <h4 class="product-single__title">
+                                        New SubCategory</h4>
+                                    
+                                        <div class="mt-2">
+                                            <select name="selectCat" class="form-select" aria-label="Default select example">
+                                                <option selected>Select Category</option>
+                                                {% for i in cat %}
+                                                <option value="{{i.id}}">{{i.category_name}}</option>
+                                                {% endfor %}
+                                                
+                                              </select>
+                                        </div>
+                                        <div class="mt-2">
+                                            <input type="text" name="subcatename" id="">
+                                        </div>
+                                        <div class="mt-2">
+                                            <button type="button" class="btn btn-addto-cart newSubCate">New Sub Category</button>
+                                        </div>
+                                    
+
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!--End-product-single-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Quick View popup-->
+
+
+{% endblock content %}

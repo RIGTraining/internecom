@@ -23,7 +23,11 @@ urlpatterns = [
     path('logout/', UserLogoutView.as_view(), name='UserLogoutView'),
 
     #Admin
+
     path('AdminReportList/', AdminReportList.as_view(), name='AdminReportList'), #AdminReportList
+    path('OrderDetailsView/<int:pk>/', OrderDetailsView.as_view(), name='OrderDetailsView'),  #OrderDetailsView
+    path('Dash/', AdminDash.as_view(), name='AdminDash'),
+    path('AdminProductManagement/', AdminProductManagement.as_view(), name='AdminProductManagement'),
 ]
 
 

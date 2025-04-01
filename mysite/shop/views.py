@@ -175,7 +175,7 @@ def processtocheck(request):
     country = request.GET.get('country')
     state = request.GET.get('state')
     address = request.GET.get('address')
-    print(Coupon, country, state, address)
+    # print(Coupon, country, state, address)
     ItemOrder.objects.create(cart=cart, discount_code=Coupon, country=country, state=state, address=address)
     request.session['cart_id'] = None
     # del request.session['cart_id']
@@ -235,5 +235,24 @@ class AdminReportList(UserRequiredMixin,View):
         context={'datas':datas, 'page_obj':page_obj}
         return render(request, 'AdminReportList.html', context)
 
+class OrderDetailsView(UserRequiredMixin,View):
+    def get(self, request, pk):
+        rep = ItemOrder.objects.get(id=pk)
+        cart_id = rep.cart
+        # print(cart_id)
+        cart = Cart.objects.get(id=cart_id.id)
+        context = {'cart':cart}
+        return render(request, 'OrderDetailsView.html', context)
 
-
+class AdminDash(UserRequiredMixin,View):
+    def get(self, request):
+        context = {}
+        return render(request, 'AdminDash.html', context)
+    
+class AdminProductManagement(View):
+    def get(self, request):
+        cat = Category.objects.all()
+        # sub = subCategory.objects.all()
+        itm = Items.objects.all()
+        context = {'cat':cat, 'itm':itm}
+        return render(request, 'AdminProductManagement.html', context)
