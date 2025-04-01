@@ -129,4 +129,3 @@ class Wishlist(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     
-# c

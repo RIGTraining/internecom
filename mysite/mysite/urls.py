@@ -17,6 +17,13 @@ urlpatterns = [
     path('whitelistview/', whitelistview, name='whitelistview'), #whitelistview
     path('cartview/', cartview, name='cartview'), #cartview
     path('clearcart/', clearcart, name='clearcart'), #clearcart
+    path('processtocheck/', processtocheck, name='processtocheck'), #processtocheck
+
+    path('adminlogin', UserLoginView.as_view(), name = 'UserLoginView'),
+    path('logout/', UserLogoutView.as_view(), name='UserLogoutView'),
+
+    #Admin
+    path('AdminReportList/', AdminReportList.as_view(), name='AdminReportList'), #AdminReportList
 ]
 
 

@@ -673,7 +673,7 @@
                             data-src="{% static 'assets/images/cat-women2.jpg' %}"
                             src="{% static 'assets/images/cat-women2.jpg' %}" alt="Women" title="Women" /></div>
                     <div class="collection-hero__title-wrapper">
-                        <h1 class="collection-hero__title page-width">Shop Fullwidth</h1>
+                        <h1 class="collection-hero__title page-width">Shop</h1>
                     </div>
                 </div>
             </div>
@@ -910,6 +910,32 @@
 
                         });//end ajax
                     });//end function
+
+                    //process to checkout
+                    $("#checkoutform").on('click', '.processtocheckout', function () {
+                        var currenttr = $(this).closest(".chform");
+                        var Coupon = currenttr.find("input[name=coupon]").val()
+                        var country = currenttr.find("#address_country").val()
+                        var state = currenttr.find("#address_province").val()
+                        var address = currenttr.find('#formaddress').val()
+                        // console.log(Coupon, country, state, address)
+                        $.ajax({
+                            url: "{% url 'processtocheck' %}",
+                            method: "GET",
+                            data: {Coupon:Coupon, country:country, state:state, address:address},
+                            success: function (data) {
+                                alert('Your Order Successfully Sent...');
+                                // window.setTimeout(function(){ } ,100);
+                                // window.location='/';
+                                location.href = '/';
+                            },
+                            error: function () {
+                                alert('Error contact to 09-969255445');
+                            },
+
+                        });//end ajax
+                    });//end function
+
 
                 }); //readyfunction
             </script>

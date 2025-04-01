@@ -9,6 +9,11 @@ class ItemsAdmin(admin.ModelAdmin):
     list_display = ('id', 'item_name','category','sell_price','balance_qty')
 admin.site.register(Items,ItemsAdmin)
 
+class ItemOrderAdmin(admin.ModelAdmin):
+    list_display = ('id', 'cart','discount_code','country','state','address', 'status','created_at')
+admin.site.register(ItemOrder,ItemOrderAdmin)
+
+
 
 admin.site.register(Category)
 admin.site.register(subCategory)
@@ -18,7 +23,7 @@ admin.site.register(Cart)
 admin.site.register(CartProduct)
 admin.site.register(ItmColor)
 admin.site.register(ItmSize)
-admin.site.register(ItemOrder)
+
 admin.site.register(Wishlist)
 
 

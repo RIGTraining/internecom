@@ -11,7 +11,8 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import *
-
+from django.contrib.auth import authenticate, login, logout
+from django.core.paginator import Paginator
 
 def home(request):
     return render(request, 'home.html')
@@ -144,11 +145,17 @@ def addtocart(request):
 
 def cartview(request):
     cart_id = request.session.get("cart_id", None)
-    cart = Cart.objects.get(id=cart_id)
-    context = {'cart':cart}
+    if cart_id:
+        cart = Cart.objects.get(id=cart_id)
+        context = {'cart':cart}
+        return render(request, 'cartview.html', context)
+    else:
+        context={}
+        return render(request, 'cartview.html', context)
     
     
-    return render(request, 'cartview.html', context)
+    
+    
 
 def clearcart(request):
     cart_id = request.session.get("cart_id", None)
@@ -158,3 +165,75 @@ def clearcart(request):
         cart.total =0
         cart.save()
         return JsonResponse({'status':'success'})
+
+
+def processtocheck(request):
+    # Coupon, country, state, address
+    cart_id = request.session.get("cart_id", None)
+    cart = Cart.objects.get(id=cart_id)
+    Coupon = request.GET.get('Coupon')
+    country = request.GET.get('country')
+    state = request.GET.get('state')
+    address = request.GET.get('address')
+    print(Coupon, country, state, address)
+    ItemOrder.objects.create(cart=cart, discount_code=Coupon, country=country, state=state, address=address)
+    request.session['cart_id'] = None
+    # del request.session['cart_id']
+    return JsonResponse({'status':'success'})
+
+
+
+# ===================================================User Log In ===============================
+from django import forms
+from .models import *
+
+
+class ULoginForm(forms.Form):
+    username = forms.CharField(widget=forms.TextInput())
+    password = forms.CharField(widget=forms.PasswordInput())
+
+
+class UserRequiredMixin(object):
+    def dispatch(self, request, *args, **kwargs):
+        # if request.user.is_authenticated & request.user.is_superuser:
+        if request.user.is_staff:
+            pass
+        else:
+            return redirect('UserLoginView')
+        return super().dispatch(request, *args, **kwargs)
+
+
+class UserLoginView(FormView):
+    template_name = 'login.html'
+    form_class = ULoginForm
+    success_url = reverse_lazy('shopview')
+
+    def form_valid(self, form):
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data['password']
+        usr = authenticate(username=username, password=password)
+
+        if usr is not None:
+            login(self.request, usr)
+
+        else:
+            return render(self.request, self.template_name, {'form': self.form_class, 'error': 'Invalid user login!'})
+        return super().form_valid(form)
+
+class UserLogoutView(View):
+    def get(self,request):
+        logout(request)
+        return redirect('UserLoginView')
+
+
+class AdminReportList(UserRequiredMixin,View):
+    def get(self, request):
+        datas = ItemOrder.objects.all()
+        paginator = Paginator(datas, 5)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        context={'datas':datas, 'page_obj':page_obj}
+        return render(request, 'AdminReportList.html', context)
+
+
+

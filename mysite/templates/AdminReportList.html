@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+    <!--Body Content-->
+    <div id="page-content">
+    	<!--Page Title-->
+    	<!-- <div class="page section-header text-center">
+			<div class="page-title">
+        		<div class="wrapper"><h1 class="page-width">Wish List</h1></div>
+      		</div>
+		</div> -->
+        <!--End Page Title-->
+        
+        <div class="container">
+        	<div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 main-col">
+                	<form action="#">
+                        <div class="wishlist-table table-content table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                    	<th class="product-name text-center alt-font">Date</th>
+                                        <th class="product-price text-center alt-font">Order ID</th>
+                                        <th class="product-name alt-font">Country</th>
+                                        <th class="product-price text-center alt-font">State</th>
+                                        <th class="stock-status text-center alt-font">Addtress</th>
+                                        <th class="product-subtotal text-center alt-font">View</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in page_obj %}
+                                    <tr>
+                                    	<td class="product-remove text-center" valign="middle"><a href="#">{{i.created_at}}</a></td>
+                                        <td class="product-thumbnail text-center">
+                                            <h6>{{i.cart}}</h6>
+                                        </td>
+                                        <td class="product-name"><h4 class="no-margin"><a href="#">{{i.country}}</a></h4></td>
+                                        <td class="product-price text-center"><span class="amount">{{i.state}}</span></td>
+                                        <td class="stock text-center">
+                                            <span class="in-stock">{{i.address}}</span>
+                                        </td>
+                                        <td class="product-subtotal text-center"><button type="button" class="btn btn-small">View Details</button></td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>                   
+               	</div>
+                   <div class="pagination justify-content-end">
+                    <span class="step-links">
+                        {% if page_obj.has_previous %}
+                            <a href="?page=1" class="btn btn-small">&laquo; first</a>
+                            <a href="?page={{ page_obj.previous_page_number }}" class="btn btn-small">previous</a>
+                        {% endif %}
+                
+                        <span class="current h4">
+                            
+                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                        </span>
+                
+                        {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}" class="btn btn-small">next</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}" class="btn btn-small">last &raquo;</a>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!--End Body Content-->
+    
+
+
+
+
+{% endblock content %}
