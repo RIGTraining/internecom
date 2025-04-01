@@ -23,7 +23,9 @@ urlpatterns = [
     path('logout/', UserLogoutView.as_view(), name='UserLogoutView'),
 
     #Admin
-
+    path('addmaincategory/', addmaincategory, name='addmaincategory'),
+    path('addsubcategory/', addsubcategory, name='addsubcategory'),
+    
     path('AdminReportList/', AdminReportList.as_view(), name='AdminReportList'), #AdminReportList
     path('OrderDetailsView/<int:pk>/', OrderDetailsView.as_view(), name='OrderDetailsView'),  #OrderDetailsView
     path('Dash/', AdminDash.as_view(), name='AdminDash'),

@@ -256,3 +256,17 @@ class AdminProductManagement(View):
         itm = Items.objects.all()
         context = {'cat':cat, 'itm':itm}
         return render(request, 'AdminProductManagement.html', context)
+
+def addmaincategory(request):
+    maincate = request.GET.get('maincate')
+    Category.objects.create(category_name=maincate)
+    
+    return JsonResponse({'status':'success'})
+
+
+def addsubcategory(request):
+    subcatename = request.GET.get('subcatename')
+    maincate = request.GET.get('maincate')
+    category_name = Category.objects.get(id = maincate)
+    subCategory.objects.create(subcategory_name=subcatename,category_name=category_name )
+    return JsonResponse({'status':'success'})

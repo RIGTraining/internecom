@@ -62,7 +62,8 @@
                                 </a>
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 text-center filters-toolbar__item filters-toolbar__item--count d-flex justify-content-center align-items-center">
-                                <span class="filters-toolbar__product-count">Showing: 22</span>
+                                <!-- <span class="filters-toolbar__product-count">Showing: 22</span> -->
+                                 <a href="#" class="btn btn--small">Create New Item</a>
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 text-right">
                                 <div class="filters-toolbar__item">
@@ -141,7 +142,7 @@
                             class="model-close-btn pull-right" title="close"><span
                                 class="icon icon anm anm-times-l"></span></a>
                         <!-- End model close -->
-                        <div class="row">
+                        <div class="row createCateFm">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                 <h4 class="product-single__title">
                                     New Category</h4>
@@ -160,8 +161,8 @@
                                         New SubCategory</h4>
                                     
                                         <div class="mt-2">
-                                            <select name="selectCat" class="form-select" aria-label="Default select example">
-                                                <option selected>Select Category</option>
+                                            <select id="mainCatSlt" class="form-select" aria-label="Default select example">
+                                                <!-- <option selected value="aa">Select Category</option> -->
                                                 {% for i in cat %}
                                                 <option value="{{i.id}}">{{i.category_name}}</option>
                                                 {% endfor %}

@@ -471,7 +471,47 @@
 
                     //Create New Category
                     $("#newcategorymodel").on('click', '.newCatBtn', function () {
-                        console.log('click')
+                        var currenttr = $(this).closest(".createCateFm");
+                        var maincate = currenttr.find("input[name=maincate]").val()
+                        // console.log('click',maincate)
+                        $.ajax({
+                            url: "{% url 'addmaincategory' %}",
+                            method: "GET",
+                            data: {maincate:maincate},
+                            success: function (data) {
+                                alert('Main Category Created');
+                                window.setTimeout(function(){ } ,100);
+                                location.reload();
+                                
+                            },
+                            error: function () {
+                                alert('Error contact to 09-969255445');
+                            },
+
+                        });//end ajax
+                    });//end function
+
+                    //Create New SubCategory
+                    $("#newcategorymodel").on('click', '.newSubCate', function () {
+                        var currenttr = $(this).closest(".createCateFm");
+                        var subcatename = currenttr.find("input[name=subcatename]").val()
+                        var maincate = currenttr.find("#mainCatSlt option:selected").val()
+                        // console.log('click',maincate)
+                        $.ajax({
+                            url: "{% url 'addsubcategory' %}",
+                            method: "GET",
+                            data: {maincate:maincate, subcatename:subcatename},
+                            success: function (data) {
+                                alert('Sub Category Created');
+                                window.setTimeout(function(){ } ,100);
+                                location.reload();
+                                
+                            },
+                            error: function () {
+                                alert('Error contact to 09-969255445');
+                            },
+
+                        });//end ajax
                     });//end function
 
 
