@@ -31,6 +31,7 @@ urlpatterns = [
     path('Dash/', AdminDash.as_view(), name='AdminDash'),
     path('AdminProductManagement/', AdminProductManagement.as_view(), name='AdminProductManagement'),
     path('CustomerManagement/', CustomerManagement.as_view(), name='CustomerManagement'),
+    path('CategoryFilter/<int:id>/', CategoryFilter.as_view(), name='CategoryFilter'),
 ]
 
 

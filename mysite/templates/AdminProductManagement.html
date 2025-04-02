@@ -14,13 +14,13 @@
                     <div class="widget-title"><h2>Categories</h2></div>
                     <div class="widget-content">
                         <ul class="sidebar_categories">
-                            {% for p in cat.subcategory_set.all %}
-                            <li class="level1 sub-level"><a href="#;" class="site-nav">Clothing</a>
+                            {% for i in cat %}
+                            <li class="level1 sub-level"><a href="#;" class="site-nav">{{i.category_name}}</a>
                                 <ul class="sublinks">
-                                    <li class="level2"><a href="#;" class="site-nav">Men</a></li>
-                                    <li class="level2"><a href="#;" class="site-nav">Women</a></li>
-                                    <li class="level2"><a href="#;" class="site-nav">Child</a></li>
-                                    <li class="level2"><a href="#;" class="site-nav">View All Clothing</a></li>
+                                    {% for smenu in i.subcategory_set.all %}
+                                    <li class="level2"><a href="#;" class="site-nav">{{smenu.subcategory_name}}</a></li>
+                                    {% endfor %}
+                                    
                                 </ul>
                             </li>
                             {% endfor %}

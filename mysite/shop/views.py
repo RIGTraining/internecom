@@ -83,14 +83,15 @@ def register_page(request):
 @login_required(login_url='login_page')
 def shopview(request):
     itm = Items.objects.all()
+    cat = Category.objects.all()
     cart_id = request.session.get('cart_id', None)
     if cart_id:
         cart = Cart.objects.get(id=cart_id)
-        context = {'itm':itm, 'cart':cart}
+        context = {'itm':itm, 'cart':cart, 'cat':cat}
         return render(request, 'shop.html', context)
     else:
         cart = None
-        context = {'itm':itm, 'cart':cart}
+        context = {'itm':itm, 'cart':cart, 'cat':cat}
         return render(request, 'shop.html', context)
     
     
@@ -294,7 +295,7 @@ def addsubcategory(request):
     return JsonResponse({'status':'success'})
 
 
-class CustomerManagement(View):
+class CustomerManagement(UserRequiredMixin,View):
     def get(self, request):
         usr = User.objects.all()
         paginator = Paginator(usr, 5)
@@ -302,3 +303,26 @@ class CustomerManagement(View):
         page_obj = paginator.get_page(page_number)
         context = {'usr':usr,'page_obj':page_obj}
         return render(request, 'CustomerManagement.html', context)
+
+
+class CategoryFilter(View):
+    def get(self, request,*args, **kwargs):
+        # itm = Items.objects.all()
+        cat = Category.objects.all()
+        cart_id = self.request.session.get('cart_id', None)
+
+        c_id = kwargs['id']
+        subcat = subCategory.objects.get(id = c_id)
+        itm = Items.objects.filter(category=subcat)
+        
+        
+
+        if cart_id:
+            cart = Cart.objects.get(id=cart_id)
+            context = {'itm':itm, 'cart':cart, 'cat':cat}
+            return render(request, 'shop.html', context)
+        else:
+            cart = None
+            context = {'itm':itm, 'cart':cart, 'cat':cat}
+            return render(request, 'shop.html', context)
+        
