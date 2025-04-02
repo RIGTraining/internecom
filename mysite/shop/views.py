@@ -325,4 +325,8 @@ class CategoryFilter(View):
             cart = None
             context = {'itm':itm, 'cart':cart, 'cat':cat}
             return render(request, 'shop.html', context)
-        
+
+
+class AccountProfile(View):
+    def get(self, request):
+        return render(request, 'AccountProfile.html')
