@@ -192,6 +192,18 @@ class ULoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput())
     password = forms.CharField(widget=forms.PasswordInput())
 
+class ItemCreateForm(forms.ModelForm):
+    class Meta:
+        model = Items
+        fields = ['item_name', 'category','sell_price', 'photo', 'photo2', 'photo3', 'photo4','itm_description']
+        widgets = {
+                #     'category':forms.Select(attrs={'class':'col-md-5'}),
+                #    'sell_price': forms.NumberInput(attrs={'class': 'col-md-5'}),
+                
+                   }
+
+
+
 
 class UserRequiredMixin(object):
     def dispatch(self, request, *args, **kwargs):
@@ -249,13 +261,23 @@ class AdminDash(UserRequiredMixin,View):
         context = {}
         return render(request, 'AdminDash.html', context)
     
-class AdminProductManagement(View):
+class AdminProductManagement(UserRequiredMixin,View):
     def get(self, request):
         cat = Category.objects.all()
+        fm = ItemCreateForm()
         # sub = subCategory.objects.all()
         itm = Items.objects.all()
-        context = {'cat':cat, 'itm':itm}
+        context = {'cat':cat, 'itm':itm, 'fm':fm}
         return render(request, 'AdminProductManagement.html', context)
+    
+    def post(self, request):
+        fm = ItemCreateForm(request.POST, request.FILES)
+        if fm.is_valid():
+            fm.save()
+            return redirect(request.META['HTTP_REFERER'])
+    
+
+
 
 def addmaincategory(request):
     maincate = request.GET.get('maincate')
@@ -270,3 +292,13 @@ def addsubcategory(request):
     category_name = Category.objects.get(id = maincate)
     subCategory.objects.create(subcategory_name=subcatename,category_name=category_name )
     return JsonResponse({'status':'success'})
+
+
+class CustomerManagement(View):
+    def get(self, request):
+        usr = User.objects.all()
+        paginator = Paginator(usr, 5)
+        page_number = request.GET.get("page")
+        page_obj = paginator.get_page(page_number)
+        context = {'usr':usr,'page_obj':page_obj}
+        return render(request, 'CustomerManagement.html', context)

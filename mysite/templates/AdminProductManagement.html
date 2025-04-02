@@ -63,7 +63,9 @@
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 text-center filters-toolbar__item filters-toolbar__item--count d-flex justify-content-center align-items-center">
                                 <!-- <span class="filters-toolbar__product-count">Showing: 22</span> -->
-                                 <a href="#" class="btn btn--small">Create New Item</a>
+                                 <a href="#" class="btn btn--small"
+                                 data-toggle="modal"
+                                data-target="#newitemmodel">Create New Item</a>
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 text-right">
                                 <div class="filters-toolbar__item">
@@ -181,6 +183,44 @@
                                     
                                 </div>
                             </div>
+                        </div>
+                        <!--End-product-single-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Quick View popup-->
+
+<!--Quick View popup-->
+<div class="modal fade quick-view-popup" id="newitemmodel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="ProductSection-product-template"
+                    class="product-template__container prstyle1">
+                    <div class="product-single">
+                        <!-- Start model close -->
+                        <a href="javascript:void()" data-dismiss="modal"
+                            class="model-close-btn pull-right" title="close"><span
+                                class="icon icon anm anm-times-l"></span></a>
+                        <!-- End model close -->
+                        <div class="row">
+                            <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+                                
+                                <div class="product-details-img">
+                                    <div class="pl-2 row">
+                                        
+                                {{fm}}
+                                    </div>
+                                    <hr>
+                                    <button type="submit" class="btn btn-addto-cart">Create</button>
+                                </div>
+                            </div>
+                        </form>
+                            
                         </div>
                         <!--End-product-single-->
                     </div>

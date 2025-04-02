@@ -335,8 +335,8 @@
                                 <a href="/internecom/" class="grid-view-item__link">
                                     <!-- image -->
                                     <img class="grid-view-item__image primary blur-up lazyload"
-                                        data-src="{% static 'assets/images/product-images/product-image2.jpg' %}"
-                                        src="{% static 'assets/images/product-images/product-image2.jpg' %}"
+                                        data-src="{{i.photo.url}}"
+                                        src="{{i.photo.url}}"
                                         alt="image" title="product">
                                     <!-- End image -->
                                     <!-- Hover image -->
@@ -461,54 +461,20 @@
                                                                     <div class="product-form__item">
                                                                         <label class="header">Color: <span
                                                                                 class="slVariant"></span></label>
-                                                                        <div data-value="Red"
-                                                                            class="swatch-element color red available">
-                                                                            <input class="swatchInput"
-                                                                                id="swatch-0-red"
-                                                                                type="radio" name="option-0"
-                                                                                value="Red">
-                                                                            <label
-                                                                                class="swatchLbl color medium rectangle"
-                                                                                for="swatch-0-red"
-                                                                                style="background-image:url({{i.photo.url}});"
-                                                                                title="Red"></label>
-                                                                        </div>
-                                                                        <div data-value="Blue"
-                                                                            class="swatch-element color blue available">
-                                                                            <input class="swatchInput"
-                                                                                id="swatch-0-blue"
-                                                                                type="radio" name="option-0"
-                                                                                value="Blue">
-                                                                            <label
-                                                                                class="swatchLbl color medium rectangle"
-                                                                                for="swatch-0-blue"
-                                                                                style="background-image:url(assets/images/product-detail-page/variant1-2.jpg);"
-                                                                                title="Blue"></label>
-                                                                        </div>
-                                                                        <div data-value="Green"
-                                                                            class="swatch-element color green available">
-                                                                            <input class="swatchInput"
-                                                                                id="swatch-0-green"
-                                                                                type="radio" name="option-0"
-                                                                                value="Green">
-                                                                            <label
-                                                                                class="swatchLbl color medium rectangle"
-                                                                                for="swatch-0-green"
-                                                                                style="background-image:url(assets/images/product-detail-page/variant1-3.jpg);"
-                                                                                title="Green"></label>
-                                                                        </div>
-                                                                        <div data-value="Gray"
-                                                                            class="swatch-element color gray available">
-                                                                            <input class="swatchInput"
-                                                                                id="swatch-0-gray"
-                                                                                type="radio" name="option-0"
-                                                                                value="Gray">
-                                                                            <label
-                                                                                class="swatchLbl color medium rectangle"
-                                                                                for="swatch-0-gray"
-                                                                                style="background-image:url(assets/images/product-detail-page/variant1-4.jpg);"
-                                                                                title="Gray"></label>
-                                                                        </div>
+                                                                        
+                                                                                <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="col1">
+                                                                                    <label class="form-check-label" for="col1">
+                                                                                      Blue
+                                                                                    </label>
+                                                                                  </div>
+                                                                                  <div class="form-check">
+                                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="col2" >
+                                                                                    <label class="form-check-label" for="col2">
+                                                                                      RED
+                                                                                    </label>
+                                                                                  </div>
+                                                                        
                                                                     </div>
                                                                 </div>
                                                                 <div class="swatch clearfix swatch-1 option2"
@@ -517,21 +483,22 @@
                                                                         <label class="header">Size: <span
                                                                                 class="slVariant">XS</span></label>
                                                                         
-                                                                                <div class="form-check">
-                                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                                                                    <label class="form-check-label" for="flexRadioDefault1">
-                                                                                      Default radio
-                                                                                    </label>
-                                                                                  </div>
-                                                                                  <div class="form-check">
-                                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
-                                                                                    <label class="form-check-label" for="flexRadioDefault2">
-                                                                                      Default checked radio
-                                                                                    </label>
-                                                                                  </div>
+                                                                                
                                                                        
                                                                         
                                                                     </div>
+                                                                    <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                                          XXL
+                                                                        </label>
+                                                                      </div>
+                                                                      <div class="form-check">
+                                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                                                                        <label class="form-check-label" for="flexCheckChecked">
+                                                                          XL
+                                                                        </label>
+                                                                      </div>
                                                                 </div>
                                                                 <!-- Product Action -->
                                                                 <div class="product-action clearfix">
