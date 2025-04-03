@@ -5,8 +5,10 @@
 <!--Page Title-->
 <div class="page section-header text-center">
     <div class="page-title">
-        <div class="wrapper"><h1 class="page-width">Shopping Cart</h1></div>
-      </div>
+        <div class="wrapper">
+            <h1 class="page-width">Shopping Cart</h1>
+        </div>
+    </div>
 </div>
 <!--End Page Title-->
 
@@ -14,82 +16,92 @@
     <div class="row">
         <div class="col-6 col-sm-12 col-md-6 col-lg-6 main-col">
             <div class="alert alert-success text-uppercase" role="alert">
-                 &nbsp;<strong>Profile</strong> 
+                &nbsp;<strong>Profile</strong>
             </div>
-            <form action="#" method="post" class="cart style2">
-                <label for="">Username</label>
-                <input type="text" name="username" id="">
-            </form>                   
-           </div>
+            <div class="row mt-2">
+                <div class="col-6">
+                    <label for="">First Name</label>
+                    <input type="text" name="first" id="" value="{{request.user.first_name}}">
+                </div>
+                <div class="col-6">
+                    <label for="">Last Name</label>
+                    <input type="text" name="last" id="" value="{{request.user.last_name}}">
+                </div>
+                <div class="col-12 mt-2">
+                    <label for="">Username</label>
+                    <input type="text" name="username" id="" value="{{request.user.username}}">
+                </div>
+                
+                <div class="col-12 mt-2">
+                    <label for="">Email</label>
+                    <input type="text" name="email" id="" value="{{request.user.email}}">
+                </div>
+                
+                <div class="col-6 mt-2">
+                    <a href="#" class="btn">Update Profile</a>
+                </div>
+            </div>
+        </div>
 
-           <div class="col-6 col-sm-12 col-md-6 col-lg-6 main-col">
+        <div class="col-6 col-sm-12 col-md-6 col-lg-6 main-col">
             <div class="alert alert-success text-uppercase" role="alert">
-                 &nbsp;<strong>Recent</strong> Invoice Lists
+                &nbsp;<strong>Recent</strong> Invoice Lists
             </div>
             <form action="#" method="post" class="cart style2">
                 <table>
                     <thead class="cart__row cart__header">
                         <tr>
-                            <th colspan="2" class="text-center">Product</th>
-                            <th class="text-center">Price</th>
-                            <th class="text-center">Quantity</th>
-                            <th class="text-right">Total</th>
-                            <th class="action">&nbsp;</th>
+
+                            <th class="text-center">Invoice No</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">Amount</th>
+                            <th class="text-right">View</th>
+                            <!-- <th class="action">&nbsp;</th> -->
                         </tr>
                     </thead>
                     <tbody>
-                        {% for p in cart.cartproduct_set.all %}
+                        {% for p in inv %}
 
                         <tr class="cart__row border-bottom line1 cart-flex border-top">
                             <td class="cart__image-wrapper cart-flex-item">
-                                <a href="#"><img class="cart__image" src="{{p.product.photo.url}}" alt="Elastic Waist Dress - Navy / Small"></a>
+                                <a href="#">{{p.cart.id}}</a>
                             </td>
                             <td class="cart__meta small--text-left cart-flex-item">
                                 <div class="list-view-item__title">
-                                    <a href="#">{{p.product.item_name}} </a>
+                                    <a href="#">{{p.created_at}} </a>
                                 </div>
-                                
-                                <div class="cart__meta-text">
-                                    Color: Navy<br>Size: Small<br>
-                                </div>
+
+
                             </td>
                             <td class="cart__price-wrapper cart-flex-item">
-                                <span class="money">{{p.product.sell_price}}</span>
+                                <span class="money">{{p.cart.total}}</span>
                             </td>
                             <td class="cart__update-wrapper cart-flex-item text-right">
-                                <div class="cart__qty text-center">
-                                    <div class="qtyField">
-                                        <a class="qtyBtn minus" href="javascript:void(0);"><i class="icon icon-minus"></i></a>
-                                        <input class="cart__qty-input qty" type="text" name="updates[]" id="qty" value="{{p.quantity}}" pattern="[0-9]*">
-                                        <a class="qtyBtn plus" href="javascript:void(0);"><i class="icon icon-plus"></i></a>
-                                    </div>
-                                </div>
+                                <a href="#" class="btn btn--small">details</a>
                             </td>
-                            <td class="text-right small--hide cart-price">
-                                <div><span class="money">{{p.subtotal}}</span></div>
-                            </td>
+
                             <!-- <td class="text-center small--hide"><a href="#" class="btn btn--secondary cart__remove" title="Remove tem"><i class="icon icon anm anm-times-l"></i></a></td> -->
                         </tr>
                         {% endfor %}
-                       
+
 
                     </tbody>
                     <tfoot>
-                        <tr id="cartviewfooter">
+                        <!-- <tr id="cartviewfooter">
                             <td colspan="3" class="text-left"><a href="/" class="btn btn-secondary btn--small cart-continue">Continue shopping</a></td>
                             <td colspan="3" class="text-right">
                                 <button type="button" name="clear" class="btn btn-secondary btn--small  small--hide clearcartbtn">Clear Cart</button>
                                 <button type="button" name="update" class="btn btn-outline-success ml-2">Accept Order</button>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tfoot>
-            </table> 
-            </form>                   
-           </div>
-        
-        
-        
-        
+                </table>
+            </form>
+        </div>
+
+
+
+
     </div>
 </div>
 

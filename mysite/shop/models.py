@@ -112,6 +112,7 @@ class Order(models.Model):
         return "Order : " + str(self.id)
 
 class ItemOrder(models.Model):
+    usr = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     discount_code = models.CharField(max_length=255, blank=True, null=True)
     country = models.CharField(max_length=255, blank=True, null=True)

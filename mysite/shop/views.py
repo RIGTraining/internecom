@@ -177,7 +177,7 @@ def processtocheck(request):
     state = request.GET.get('state')
     address = request.GET.get('address')
     # print(Coupon, country, state, address)
-    ItemOrder.objects.create(cart=cart, discount_code=Coupon, country=country, state=state, address=address)
+    ItemOrder.objects.create(cart=cart, discount_code=Coupon, country=country, state=state, address=address, usr=request.user)
     request.session['cart_id'] = None
     # del request.session['cart_id']
     return JsonResponse({'status':'success'})
@@ -329,4 +329,8 @@ class CategoryFilter(View):
 
 class AccountProfile(View):
     def get(self, request):
-        return render(request, 'AccountProfile.html')
+        usr = User.objects.get(id = request.user.id)
+        inv = ItemOrder.objects.filter(usr= request.user)
+        # wish = Wishlist.objects.filter()
+        context = {'usr':usr, 'inv':inv}
+        return render(request, 'AccountProfile.html', context)
