@@ -25,6 +25,8 @@ urlpatterns = [
     #Admin
     path('addmaincategory/', addmaincategory, name='addmaincategory'),
     path('addsubcategory/', addsubcategory, name='addsubcategory'),
+    path('newsize/', newsize, name='newsize'), #newsize
+    path('newcolor/', newcolor, name='newcolor'), #newsize
     
     path('AdminReportList/', AdminReportList.as_view(), name='AdminReportList'), #AdminReportList
     path('OrderDetailsView/<int:pk>/', OrderDetailsView.as_view(), name='OrderDetailsView'),  #OrderDetailsView

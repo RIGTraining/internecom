@@ -4,14 +4,16 @@
 
 
 <div class="container">
-    <div class="row">
+    <div class="row" id="adminproductlist">
         <!--Sidebar-->
         <div class="col-12 col-sm-12 col-md-3 col-lg-3 sidebar filterbar">
             <div class="closeFilter d-block d-md-none d-lg-none"><i class="icon icon anm anm-times-l"></i></div>
             <div class="sidebar_tags">
                 <!--Categories-->
                 <div class="sidebar_widget categories filter-widget">
-                    <div class="widget-title"><h2>Categories</h2></div>
+                    <div class="widget-title">
+                        <h2>Categories</h2>
+                    </div>
                     <div class="widget-content">
                         <ul class="sidebar_categories">
                             {% for i in cat %}
@@ -20,32 +22,31 @@
                                     {% for smenu in i.subcategory_set.all %}
                                     <li class="level2"><a href="#;" class="site-nav">{{smenu.subcategory_name}}</a></li>
                                     {% endfor %}
-                                    
+
                                 </ul>
                             </li>
                             {% endfor %}
-                            
-                            
-                            <li class="lvl-1"><a href="#" class="btn btn--small"
-                                 data-toggle="modal"
-                                data-target="#newcategorymodel">New Categories</a></li>
-                            
+
+
+                            <li class="lvl-1"><a href="#" class="btn btn--small" data-toggle="modal"
+                                    data-target="#newcategorymodel">New Categories</a></li>
+
                         </ul>
                     </div>
                 </div>
                 <!--Categories-->
-               
-                
+
+
                 <div class="sidebar_widget static-banner">
                     <img src="{% static 'assets/images/side-banner-2.jpg' %}" alt="" />
                 </div>
-              
+
             </div>
         </div>
         <!--End Sidebar-->
         <!--Main Content-->
         <div class="col-12 col-sm-12 col-md-9 col-lg-9 main-col">
-            
+
             <hr>
             <div class="productList">
                 <!--Toolbar-->
@@ -53,7 +54,8 @@
                 <div class="toolbar">
                     <div class="filters-toolbar-wrapper">
                         <div class="row">
-                            <div class="col-4 col-md-4 col-lg-4 filters-toolbar__item collection-view-as d-flex justify-content-start align-items-center">
+                            <div
+                                class="col-4 col-md-4 col-lg-4 filters-toolbar__item collection-view-as d-flex justify-content-start align-items-center">
                                 <a href="#" title="Grid View" class="change-view change-view--active">
                                     <img src="{% static 'assets/images/grid.jpg' %}" alt="Grid" />
                                 </a>
@@ -61,21 +63,22 @@
                                     <img src="{% static 'assets/images/list.jpg' %}" alt="List" />
                                 </a>
                             </div>
-                            <div class="col-4 col-md-4 col-lg-4 text-center filters-toolbar__item filters-toolbar__item--count d-flex justify-content-center align-items-center">
+                            <div
+                                class="col-4 col-md-4 col-lg-4 text-center filters-toolbar__item filters-toolbar__item--count d-flex justify-content-center align-items-center">
                                 <!-- <span class="filters-toolbar__product-count">Showing: 22</span> -->
-                                 <a href="#" class="btn btn--small"
-                                 data-toggle="modal"
-                                data-target="#newitemmodel">Create New Item</a>
+                                <a href="#" class="btn btn--small" data-toggle="modal"
+                                    data-target="#newitemmodel">Create New Item</a>
                             </div>
                             <div class="col-4 col-md-4 col-lg-4 text-right">
                                 <div class="filters-toolbar__item">
-                                      <label for="SortBy" class="hidden">Sort</label>
-                                      <select name="SortBy" id="SortBy" class="filters-toolbar__input filters-toolbar__input--sort">
+                                    <label for="SortBy" class="hidden">Sort</label>
+                                    <select name="SortBy" id="SortBy"
+                                        class="filters-toolbar__input filters-toolbar__input--sort">
                                         <option value="title-ascending" selected="selected">Sort</option>
                                         <option>Best Selling</option>
-                                        
-                                      </select>
-                                      <input class="collection-header__default-sort" type="hidden" value="manual">
+
+                                    </select>
+                                    <input class="collection-header__default-sort" type="hidden" value="manual">
                                 </div>
                             </div>
 
@@ -91,14 +94,18 @@
                         <div class="list-view-item__image-column">
                             <div class="list-view-item__image-wrapper">
                                 <!-- Image -->
-                                <a href="#"><img class="list-view-item__image blur-up lazyload" data-src="{{i.photo.url}}" src="{{i.photo.url}}" alt="image" title="product"></a>
+                                <a href="#"><img class="list-view-item__image blur-up lazyload"
+                                        data-src="{{i.photo.url}}" src="{{i.photo.url}}" alt="image"
+                                        title="product"></a>
                                 <!-- End Image -->
                             </div>
                         </div>
                         <div class="list-view-item__title-column">
                             <div class="h4 grid-view-item__title"><a href="#">{{i.item_name}}</a></div>
                             <!-- Product Review -->
-                            <p class="product-review"><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i class="font-13 fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i></p>
+                            <p class="product-review"><i class="font-13 fa fa-star"></i><i
+                                    class="font-13 fa fa-star"></i><i class="font-13 fa fa-star"></i><i
+                                    class="font-13 fa fa-star-o"></i><i class="font-13 fa fa-star-o"></i></p>
                             <!-- End Product Review -->
                             <!-- Sort Description -->
                             <p>{{i.itm_description}}</p>
@@ -106,22 +113,82 @@
                             <!-- Price -->
                             <p class="product-price grid-view-item__meta">
                                 <!-- <span class="old-price">sell_price</span> -->
-                                <span class="product-price__price product-price__sale"><span class="money">{{i.sell_price}}</span></span>
+                                <span class="product-price__price product-price__sale"><span
+                                        class="money">Price : {{i.sell_price}} MMK</span></span>
                             </p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <span>Size</span>
+                                    <!-- border: 5px solid red; -->
+                                    {% for sz in i.itmsize_set.all %}
+                                    <span class="badge m-1 p-2 rounded" style="border: 1px solid rgb(14, 0, 0);">{{sz.size}}</span>
+                                    {% endfor %}
+                                </div>
+                                <div class="col-6">
+                                    <span>Color : </span>
+                                    {% for cl in i.itmcolor_set.all %}
+                                    <span class="badge m-1 p-2 rounded" style="background-color: {{cl.color}}; border: 1px solid rgb(1, 0, 0);">&nbsp;</span>
+                                    {% endfor %}
+                                    
+                                    
+                                </div>
+                            </div>
                             <!-- End Price -->
                             <form class="variants" action="#">
-                                <button class="btn btn--small" type="button">Select Options</button>
+                                <a href="#" class="btn btn--small" data-toggle="modal"
+                                    data-target="#addsizecolor-{{i.id}}">size & color</a>
+
                             </form>
                         </div>
                     </div>
                     <!--End ListView Item-->
+                    <!--Quick View popup size color-->
+                    <div class="modal fade quick-view-popup" id="addsizecolor-{{i.id}}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div id="ProductSection-product-template"
+                                        class="product-template__container prstyle1">
+                                        <div class="product-single">
+                                            <!-- Start model close -->
+                                            <a href="javascript:void()" data-dismiss="modal"
+                                                class="model-close-btn pull-right" title="close"><span
+                                                    class="icon icon anm anm-times-l"></span></a>
+                                            <!-- End model close -->
+                                            <div class="row sizecolormdl">
+                                                <div class="col-12">
+                                                    <h2>{{i.item_name}}</h2>
+                                                    <input type="number" name="itmid" value="{{i.id}}" hidden>
+                                                </div>
+                                                <hr/>
+                                                <div class="col-6">
+                                                    <h4>Add Size</h4>
+                                                    <input type="text" name="addsize" id="">
+                                                    <button type="button" class="btn btn--small m-2 newsizebtn">Create Size</button>
+                                                </div>
+                                                <div class="col-6">
+                                                    <h4>Add Color</h4>
+                                                    <input type="text" name="addcolor" id="">
+                                                    <button type="button" class="btn btn--small m-2 colbtn">Create Color</button>
+                                                </div>
+                                                
+
+                                            </div>
+                                            <!--End-product-single-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End Quick View popup size color-->
                     {% endfor %}
-                    
-                    
+
+
                 </div>
             </div>
             <div class="infinitpaginOuter">
-                <div class="infinitpagin">	
+                <div class="infinitpagin">
                     <a href="#" class="btn loadMore">Load More</a>
                 </div>
             </div>
@@ -136,13 +203,11 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <div id="ProductSection-product-template"
-                    class="product-template__container prstyle1">
+                <div id="ProductSection-product-template" class="product-template__container prstyle1">
                     <div class="product-single">
                         <!-- Start model close -->
-                        <a href="javascript:void()" data-dismiss="modal"
-                            class="model-close-btn pull-right" title="close"><span
-                                class="icon icon anm anm-times-l"></span></a>
+                        <a href="javascript:void()" data-dismiss="modal" class="model-close-btn pull-right"
+                            title="close"><span class="icon icon anm anm-times-l"></span></a>
                         <!-- End model close -->
                         <div class="row createCateFm">
                             <div class="col-lg-6 col-md-6 col-sm-12 col-12">
@@ -150,10 +215,11 @@
                                     New Category</h4>
                                 <div class="product-details-img">
                                     <div class="pl-20">
-                                        
-                                <input type="text" name="maincate" id="">
-                                <button type="button" class="btn btn-addto-cart mt-2 newCatBtn">Create Category</button>
-                                        
+
+                                        <input type="text" name="maincate" id="">
+                                        <button type="button" class="btn btn-addto-cart mt-2 newCatBtn">Create
+                                            Category</button>
+
                                     </div>
                                 </div>
                             </div>
@@ -161,26 +227,27 @@
                                 <div class="product-single__meta">
                                     <h4 class="product-single__title">
                                         New SubCategory</h4>
-                                    
-                                        <div class="mt-2">
-                                            <select id="mainCatSlt" class="form-select" aria-label="Default select example">
-                                                <!-- <option selected value="aa">Select Category</option> -->
-                                                {% for i in cat %}
-                                                <option value="{{i.id}}">{{i.category_name}}</option>
-                                                {% endfor %}
-                                                
-                                              </select>
-                                        </div>
-                                        <div class="mt-2">
-                                            <input type="text" name="subcatename" id="">
-                                        </div>
-                                        <div class="mt-2">
-                                            <button type="button" class="btn btn-addto-cart newSubCate">New Sub Category</button>
-                                        </div>
-                                    
 
-                                    
-                                    
+                                    <div class="mt-2">
+                                        <select id="mainCatSlt" class="form-select" aria-label="Default select example">
+                                            <!-- <option selected value="aa">Select Category</option> -->
+                                            {% for i in cat %}
+                                            <option value="{{i.id}}">{{i.category_name}}</option>
+                                            {% endfor %}
+
+                                        </select>
+                                    </div>
+                                    <div class="mt-2">
+                                        <input type="text" name="subcatename" id="">
+                                    </div>
+                                    <div class="mt-2">
+                                        <button type="button" class="btn btn-addto-cart newSubCate">New Sub
+                                            Category</button>
+                                    </div>
+
+
+
+
                                 </div>
                             </div>
                         </div>
@@ -198,29 +265,27 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">
-                <div id="ProductSection-product-template"
-                    class="product-template__container prstyle1">
+                <div id="ProductSection-product-template" class="product-template__container prstyle1">
                     <div class="product-single">
                         <!-- Start model close -->
-                        <a href="javascript:void()" data-dismiss="modal"
-                            class="model-close-btn pull-right" title="close"><span
-                                class="icon icon anm anm-times-l"></span></a>
+                        <a href="javascript:void()" data-dismiss="modal" class="model-close-btn pull-right"
+                            title="close"><span class="icon icon anm anm-times-l"></span></a>
                         <!-- End model close -->
                         <div class="row">
                             <form action="" method="post" enctype="multipart/form-data">{% csrf_token %}
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-12">
-                                
-                                <div class="product-details-img">
-                                    <div class="pl-2 row">
-                                        
-                                {{fm}}
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+
+                                    <div class="product-details-img">
+                                        <div class="pl-2 row">
+
+                                            {{fm}}
+                                        </div>
+                                        <hr>
+                                        <button type="submit" class="btn btn-addto-cart">Create</button>
                                     </div>
-                                    <hr>
-                                    <button type="submit" class="btn btn-addto-cart">Create</button>
                                 </div>
-                            </div>
-                        </form>
-                            
+                            </form>
+
                         </div>
                         <!--End-product-single-->
                     </div>
@@ -230,6 +295,10 @@
     </div>
 </div>
 <!--End Quick View popup-->
+
+
+
+
 
 
 {% endblock content %}

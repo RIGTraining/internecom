@@ -17,14 +17,15 @@
                     </div>
                     <div class="widget-content">
                         <ul class="sidebar_categories">
-                            
+
                             {% for i in cat %}
                             <li class="level1 sub-level"><a href="#;" class="site-nav">{{i.category_name}}</a>
                                 <ul class="sublinks">
                                     {% for smenu in i.subcategory_set.all %}
-                                    <li class="level2"><a href="{% url 'CategoryFilter' smenu.id %}" class="site-nav">{{smenu.subcategory_name}}</a></li>
+                                    <li class="level2"><a href="{% url 'CategoryFilter' smenu.id %}"
+                                            class="site-nav">{{smenu.subcategory_name}}</a></li>
                                     {% endfor %}
-                                    
+
                                 </ul>
                             </li>
                             {% endfor %}
@@ -37,7 +38,7 @@
                                     </li>
                                 </ul>
                             </li> -->
-                            
+
                         </ul>
                     </div>
                 </div>
@@ -51,10 +52,8 @@
                         <div id="slider-range"
                             class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
                             <div class="ui-slider-range ui-widget-header ui-corner-all"></div>
-                            <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                tabindex="0"></span>
-                            <span class="ui-slider-handle ui-state-default ui-corner-all"
-                                tabindex="0"></span>
+                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
+                            <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0"></span>
                         </div>
                         <div class="row">
                             <div class="col-6">
@@ -116,10 +115,10 @@
                 </div>
                 <!--End Color Swatches-->
                 <!--Brand-->
-                
+
                 <!--End Brand-->
                 <!--Popular Products-->
-                
+
                 <!--End Popular Products-->
                 <!--Banner-->
                 <div class="sidebar_widget static-banner">
@@ -127,10 +126,10 @@
                 </div>
                 <!--Banner-->
                 <!--Information-->
-                
+
                 <!--end Information-->
                 <!--Product Tags-->
-                
+
                 <!--end Product Tags-->
             </div>
         </div>
@@ -171,8 +170,7 @@
                                         <option>Date, new to old</option>
                                         <option>Date, old to new</option>
                                     </select>
-                                    <input class="collection-header__default-sort" type="hidden"
-                                        value="manual">
+                                    <input class="collection-header__default-sort" type="hidden" value="manual">
                                 </div>
                             </div>
 
@@ -189,9 +187,7 @@
                                 <a href="/internecom/" class="grid-view-item__link">
                                     <!-- image -->
                                     <img class="grid-view-item__image primary blur-up lazyload"
-                                        data-src="{{i.photo.url}}"
-                                        src="{{i.photo.url}}"
-                                        alt="image" title="product">
+                                        data-src="{{i.photo.url}}" src="{{i.photo.url}}" alt="image" title="product">
                                     <!-- End image -->
                                     <!-- Hover image -->
                                     <img class="grid-view-item__image hover blur-up lazyload"
@@ -228,14 +224,12 @@
                                         </a>
                                         <!-- Start product button -->
                                         <form action="#" method="post">
-                                            <button class="btn btn--secondary cartIcon btn-addto-cart"
-                                                type="button"><i class="icon anm anm-bag-l"></i></button>
+                                            <button class="btn btn--secondary cartIcon btn-addto-cart" type="button"><i
+                                                    class="icon anm anm-bag-l"></i></button>
                                         </form>
                                         <div class="wishlist-btn">
-                                            <input type="number" name="itmid"
-                                                                            value="{{i.id}}" hidden>
-                                            <a class="wishlist add-to-wishlist" href="#"
-                                                title="Add to Wishlist">
+                                            <input type="number" name="itmid" value="{{i.id}}" hidden>
+                                            <a class="wishlist add-to-wishlist" href="#" title="Add to Wishlist">
                                                 <i class="icon anm anm-heart-l"></i>
                                             </a>
                                         </div>
@@ -277,25 +271,23 @@
                                                             <h2 class="product-single__title">
                                                                 {{i.item_name}}</h2>
                                                             <div class="prInfoRow">
-                                                                <div class="product-stock"> <span
-                                                                        class="instock ">In Stock</span>
-                                                                    <span
-                                                                        class="outstock hide">Unavailable</span>
+                                                                <!-- <div class="product-stock"> <span class="instock ">In
+                                                                        Stock</span>
+                                                                    <span class="outstock hide">Unavailable</span>
                                                                 </div>
                                                                 <div class="product-sku">SKU: <span
                                                                         class="variant-sku">19115-rdxs</span>
-                                                                </div>
+                                                                </div> -->
                                                             </div>
                                                             <p
                                                                 class="product-single__price product-single__price-product-template">
                                                                 <span class="visually-hidden">Regular
                                                                     price</span>
                                                                 <s id="ComparePrice-product-template"><span
-                                                                        class="money">$600.00</span></s>
+                                                                        class="money"></span></s>
                                                                 <span
                                                                     class="product-price__price product-price__price-product-template product-price__sale product-price__sale--single">
-                                                                    <span
-                                                                        id="ProductPrice-product-template"><span
+                                                                    <span id="ProductPrice-product-template"><span
                                                                             class="money">$500.00</span></span>
                                                                 </span>
                                                             </p>
@@ -303,71 +295,76 @@
                                                                 {{i.itm_description}}
                                                             </div>
 
-                                                            <form
-                                
-                                                                accept-charset="UTF-8"
+                                                            <form accept-charset="UTF-8"
                                                                 class="product-form product-form-product-template hidedropdown"
                                                                 enctype="multipart/form-data">
                                                                 <input type="number" name="addtocartitmid"
-                                                                            value="{{i.id}}" hidden>
+                                                                    value="{{i.id}}" hidden>
+                                                                    
+                                                                    <div class="row mb-3">
+                                                                        <div class="col-6">
+                                                                            <!-- color  -->
                                                                 <div class="swatch clearfix swatch-0 option1"
-                                                                    data-option-index="0">
-                                                                    <div class="product-form__item">
-                                                                        <label class="header">Color: <span
-                                                                                class="slVariant"></span></label>
-                                                                        
-                                                                                <div class="form-check">
-                                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="col1">
-                                                                                    <label class="form-check-label" for="col1">
-                                                                                      Blue
-                                                                                    </label>
-                                                                                  </div>
-                                                                                  <div class="form-check">
-                                                                                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="col2" >
-                                                                                    <label class="form-check-label" for="col2">
-                                                                                      RED
-                                                                                    </label>
-                                                                                  </div>
-                                                                        
-                                                                    </div>
+                                                                data-option-index="0">
+                                                                <div class="product-form__item">
+                                                                    <label class="header">Color: <span
+                                                                            class="slVariant"></span></label>
+
+                                                                            {% for cl in i.itmcolor_set.all %}
+
+                                                                            <div class="form-check p-1">
+                                                                                <input class="form-check-input" type="radio"
+                                                                                    name="flexRadioColor" value="{{cl.color}}">
+                                                                                <label class="form-check-label rounded" style="background-color: {{cl.color}}; border: 1px solid rgb(1, 0, 0);">
+                                                                                    &nbsp;
+                                                                                </label>
+                                                                            </div>
+                                                                            
+                                                                            {% endfor %}
+
+
+
                                                                 </div>
+                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                             <!-- size  -->
                                                                 <div class="swatch clearfix swatch-1 option2"
-                                                                    data-option-index="1">
-                                                                    <div class="product-form__item">
-                                                                        <label class="header">Size: <span
-                                                                                class="slVariant">XS</span></label>
-                                                                        
-                                                                                
-                                                                       
-                                                                        
-                                                                    </div>
-                                                                    <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                                                        <label class="form-check-label" for="flexCheckDefault">
-                                                                          XXL
-                                                                        </label>
-                                                                      </div>
-                                                                      <div class="form-check">
-                                                                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                                                                        <label class="form-check-label" for="flexCheckChecked">
-                                                                          XL
-                                                                        </label>
-                                                                      </div>
+                                                                data-option-index="1">
+                                                                <div class="product-form__item">
+                                                                    <label class="header">Size: </label>
+
                                                                 </div>
+                                                                {% for sz in i.itmsize_set.all %}
+
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="flexRadioSize" value="{{sz.size}}">
+                                                                    <label class="form-check-label">
+                                                                        {{sz.size}}
+                                                                    </label>
+                                                                </div>
+                                                                
+                                                                {% endfor %}
+                                                                
+                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    
+
+                                                               
                                                                 <!-- Product Action -->
                                                                 <div class="product-action clearfix">
-                                                                    <div
-                                                                        class="product-form__item--quantity">
+                                                                    <div class="product-form__item--quantity">
                                                                         <div class="wrapQtyBtn">
                                                                             <div class="qtyField">
                                                                                 <a class="qtyBtn minus"
                                                                                     href="javascript:void(0);"><i
                                                                                         class="fa anm anm-minus-r"
                                                                                         aria-hidden="true"></i></a>
-                                                                                <input type="text"
-                                                                                    id="Quantity"
-                                                                                    name="quantity"
-                                                                                    value="1"
+                                                                                <input type="text" id="Quantity"
+                                                                                    name="quantity" value="1"
                                                                                     class="product-form__input qty">
                                                                                 <a class="qtyBtn plus"
                                                                                     href="javascript:void(0);"><i
@@ -390,8 +387,7 @@
                                                                     <div class="wishlist-btn">
                                                                         <input type="number" name="itmid"
                                                                             value="{{i.id}}" hidden>
-                                                                        <a class="wishlist add-to-wishlist"
-                                                                            href="#"
+                                                                        <a class="wishlist add-to-wishlist" href="#"
                                                                             title="Add to Wishlist"><i
                                                                                 class="icon anm anm-heart-l"
                                                                                 aria-hidden="true"></i>

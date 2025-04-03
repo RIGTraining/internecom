@@ -408,11 +408,13 @@
                         var currenttr = $(this).closest(".product-form");
                         var iid = currenttr.find("input[name=addtocartitmid]").val()
                         var quantity = currenttr.find("input[name=quantity]").val()
-                        // console.log(iid, quantity)
+                        var colr = currenttr.find("input[name=flexRadioColor]:checked").val()
+                        var itmsize = currenttr.find("input[name=flexRadioSize]:checked").val()
+                        // console.log(iid, colr, itmsize)
                         $.ajax({
                             url: "{% url 'addtocart' %}",
                             method: "GET",
-                            data: { iid: iid, quantity:quantity },
+                            data: { iid: iid, quantity:quantity, colr:colr, itmsize:itmsize },
                             success: function (data) {
                                 alert('Product add to addtocart');
                                 window.setTimeout(function(){ } ,100);
@@ -511,6 +513,55 @@
                             },
                             error: function () {
                                 alert('Error contact to 09-969255445');
+                            },
+
+                        });//end ajax
+                    });//end function
+
+                    //Add Size
+                    
+                    $("#adminproductlist").on('click', '.newsizebtn', function () {
+                        var currenttr = $(this).closest(".sizecolormdl");
+                        var newsize = currenttr.find("input[name=addsize]").val()
+                        var itm_id = currenttr.find("input[name=itmid]").val()
+                        // var maincate = currenttr.find("#mainCatSlt option:selected").val()
+                        // console.log(newsize)
+                        $.ajax({
+                            url: "{% url 'newsize' %}",
+                            method: "GET",
+                            data: {newsize:newsize, itm_id:itm_id},
+                            success: function (data) {
+                                alert('New Size Created');
+                                // window.setTimeout(function(){ } ,100);
+                                // location.reload();
+                                
+                            },
+                            error: function () {
+                                alert('Error');
+                            },
+
+                        });//end ajax
+                    });//end function
+
+
+                    $("#adminproductlist").on('click', '.colbtn', function () {
+                        var currenttr = $(this).closest(".sizecolormdl");
+                        var newcol = currenttr.find("input[name=addcolor]").val()
+                        var itm_id = currenttr.find("input[name=itmid]").val()
+                        // var maincate = currenttr.find("#mainCatSlt option:selected").val()
+                        // console.log(newsize)
+                        $.ajax({
+                            url: "{% url 'newcolor' %}",
+                            method: "GET",
+                            data: {newcol:newcol, itm_id:itm_id},
+                            success: function (data) {
+                                alert('New Color Created');
+                                // window.setTimeout(function(){ } ,100);
+                                // location.reload();
+                                
+                            },
+                            error: function () {
+                                alert('Error');
                             },
 
                         });//end ajax

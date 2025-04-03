@@ -115,6 +115,8 @@ def whitelistview(request):
 def addtocart(request):
     product_id = request.GET.get('iid')
     quantity = request.GET.get('quantity')
+    itmsize = request.GET.get('itmsize')
+    colr = request.GET.get('colr')
     product_obj = Items.objects.get(id=product_id)
     cart_id = request.session.get("cart_id", None)
     
@@ -128,7 +130,7 @@ def addtocart(request):
         else:
             subtotal = int(quantity) * product_obj.sell_price
             item_filter = Items.objects.filter(id=product_id)
-            cartproduct = CartProduct.objects.create(cart=cart_obj, product=product_obj,rate=product_obj.sell_price, quantity=int(quantity), subtotal=subtotal)
+            cartproduct = CartProduct.objects.create(cart=cart_obj, product=product_obj,rate=product_obj.sell_price, quantity=int(quantity), subtotal=subtotal, color=colr, size=itmsize)
             cart_obj.total += subtotal
             cart_obj.save()
     else:
@@ -136,7 +138,7 @@ def addtocart(request):
         request.session['cart_id'] = cart_obj.id
         subtotal = int(quantity) * product_obj.sell_price
         item_filter = Items.objects.filter(id=product_id)
-        cartproduct = CartProduct.objects.create(cart=cart_obj, product=product_obj,rate=product_obj.sell_price, quantity=int(quantity), subtotal=subtotal)
+        cartproduct = CartProduct.objects.create(cart=cart_obj, product=product_obj,rate=product_obj.sell_price, quantity=int(quantity), subtotal=subtotal, color=colr, size=itmsize)
         cart_obj.total += subtotal
         cart_obj.save()
         
@@ -181,6 +183,9 @@ def processtocheck(request):
     request.session['cart_id'] = None
     # del request.session['cart_id']
     return JsonResponse({'status':'success'})
+
+
+
 
 
 
@@ -292,6 +297,22 @@ def addsubcategory(request):
     maincate = request.GET.get('maincate')
     category_name = Category.objects.get(id = maincate)
     subCategory.objects.create(subcategory_name=subcatename,category_name=category_name )
+    return JsonResponse({'status':'success'})
+
+def newsize(request):
+    newsize = request.GET.get('newsize')
+    itm_id = request.GET.get('itm_id')
+    # print(itm_id, newsize)
+    itm_obj = Items.objects.get(id=itm_id)
+    ItmSize.objects.create(items=itm_obj,size=newsize)
+    return JsonResponse({'status':'success'})
+
+def newcolor(request):
+    newcol = request.GET.get('newcol')
+    itm_id = request.GET.get('itm_id')
+    print(itm_id, newcol)
+    itm_obj = Items.objects.get(id=itm_id)
+    ItmColor.objects.create(items=itm_obj,color=newcol)
     return JsonResponse({'status':'success'})
 
 
