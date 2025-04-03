@@ -100,13 +100,16 @@
                         <!--Desktop Menu-->
                         <nav class="grid__item" id="AccessibleNav"><!-- for mobile -->
                             <ul id="siteNav" class="site-nav medium center hidearrow">
-                                
+
                                 {% if request.user.is_staff %}
-                                <li class="lvl1"><a href="{% url 'AdminReportList' %}"><b>Sale Report</b> <i class="anm anm-angle-down-l"></i></a>
+                                <li class="lvl1"><a href="{% url 'AdminReportList' %}"><b>Sale Report</b> <i
+                                            class="anm anm-angle-down-l"></i></a>
                                 </li>
-                                <li class="lvl1"><a href="{% url 'AdminProductManagement' %}"><b>Product Management</b> <i class="anm anm-angle-down-l"></i></a>
+                                <li class="lvl1"><a href="{% url 'AdminProductManagement' %}"><b>Product Management</b>
+                                        <i class="anm anm-angle-down-l"></i></a>
                                 </li>
-                                <li class="lvl1"><a href="{% url 'CustomerManagement' %}"><b>Customer Lists</b> <i class="anm anm-angle-down-l"></i></a>
+                                <li class="lvl1"><a href="{% url 'CustomerManagement' %}"><b>Customer Lists</b> <i
+                                            class="anm anm-angle-down-l"></i></a>
                                 </li>
                                 <li class="lvl1"><a href="#"><b>Contact</b> <i class="anm anm-angle-down-l"></i></a>
                                 </li>
@@ -151,8 +154,8 @@
                                                     <span class="label">Qty:</span>
                                                     <a class="qtyBtn minus" href="javascript:void(0);"><i
                                                             class="fa anm anm-minus-r" aria-hidden="true"></i></a>
-                                                    <input type="text" id="Quantity" name="quantity" value="{{p.quantity}}"
-                                                        class="product-form__input qty">
+                                                    <input type="text" id="Quantity" name="quantity"
+                                                        value="{{p.quantity}}" class="product-form__input qty">
                                                     <a class="qtyBtn plus" href="javascript:void(0);"><i
                                                             class="fa anm anm-plus-r" aria-hidden="true"></i></a>
                                                 </div>
@@ -165,7 +168,7 @@
                                         </div>
                                     </li>
                                     {% endfor %}
-                                    
+
                                 </ul>
                                 <div class="total">
                                     <div class="total-in">
@@ -192,7 +195,7 @@
         <div class="mobile-nav-wrapper" role="navigation">
             <div class="closemobileMenu"><i class="icon anm anm-times-l pull-right"></i> Close Menu</div>
             <ul id="MobileNav" class="mobile-nav">
-                
+
                 <li class="lvl1"><a href="#"><b>Buy Now!</b></a>
                 </li>
             </ul>
@@ -215,7 +218,7 @@
             {% block content %}{% endblock content %}
             <!--End Collection Banner-->
 
-          
+
             <!--End Body Content-->
 
             <!--Footer-->
@@ -414,10 +417,10 @@
                         $.ajax({
                             url: "{% url 'addtocart' %}",
                             method: "GET",
-                            data: { iid: iid, quantity:quantity, colr:colr, itmsize:itmsize },
+                            data: { iid: iid, quantity: quantity, colr: colr, itmsize: itmsize },
                             success: function (data) {
                                 alert('Product add to addtocart');
-                                window.setTimeout(function(){ } ,100);
+                                window.setTimeout(function () { }, 100);
                                 location.reload();
                             },
                             error: function () {
@@ -425,7 +428,7 @@
                             },
 
                         });//end ajax
-                        
+
 
                     });//end function
 
@@ -438,7 +441,7 @@
                             data: {},
                             success: function (data) {
                                 alert('Product remove from Cart');
-                                window.setTimeout(function(){ } ,100);
+                                window.setTimeout(function () { }, 100);
                                 location.reload();
                             },
                             error: function () {
@@ -459,7 +462,7 @@
                         $.ajax({
                             url: "{% url 'processtocheck' %}",
                             method: "GET",
-                            data: {Coupon:Coupon, country:country, state:state, address:address},
+                            data: { Coupon: Coupon, country: country, state: state, address: address },
                             success: function (data) {
                                 alert('Your Order Successfully Sent...');
                                 // window.setTimeout(function(){ } ,100);
@@ -481,12 +484,12 @@
                         $.ajax({
                             url: "{% url 'addmaincategory' %}",
                             method: "GET",
-                            data: {maincate:maincate},
+                            data: { maincate: maincate },
                             success: function (data) {
                                 alert('Main Category Created');
-                                window.setTimeout(function(){ } ,100);
+                                window.setTimeout(function () { }, 100);
                                 location.reload();
-                                
+
                             },
                             error: function () {
                                 alert('Error contact to 09-969255445');
@@ -504,12 +507,12 @@
                         $.ajax({
                             url: "{% url 'addsubcategory' %}",
                             method: "GET",
-                            data: {maincate:maincate, subcatename:subcatename},
+                            data: { maincate: maincate, subcatename: subcatename },
                             success: function (data) {
                                 alert('Sub Category Created');
-                                window.setTimeout(function(){ } ,100);
+                                window.setTimeout(function () { }, 100);
                                 location.reload();
-                                
+
                             },
                             error: function () {
                                 alert('Error contact to 09-969255445');
@@ -519,7 +522,7 @@
                     });//end function
 
                     //Add Size
-                    
+
                     $("#adminproductlist").on('click', '.newsizebtn', function () {
                         var currenttr = $(this).closest(".sizecolormdl");
                         var newsize = currenttr.find("input[name=addsize]").val()
@@ -529,12 +532,12 @@
                         $.ajax({
                             url: "{% url 'newsize' %}",
                             method: "GET",
-                            data: {newsize:newsize, itm_id:itm_id},
+                            data: { newsize: newsize, itm_id: itm_id },
                             success: function (data) {
                                 alert('New Size Created');
                                 // window.setTimeout(function(){ } ,100);
                                 // location.reload();
-                                
+
                             },
                             error: function () {
                                 alert('Error');
@@ -553,12 +556,12 @@
                         $.ajax({
                             url: "{% url 'newcolor' %}",
                             method: "GET",
-                            data: {newcol:newcol, itm_id:itm_id},
+                            data: { newcol: newcol, itm_id: itm_id },
                             success: function (data) {
                                 alert('New Color Created');
                                 // window.setTimeout(function(){ } ,100);
                                 // location.reload();
-                                
+
                             },
                             error: function () {
                                 alert('Error');
@@ -567,6 +570,42 @@
                         });//end ajax
                     });//end function
 
+                    //price range filter
+
+
+                    //color filter shop page
+                    $("#shopagesidebar").on('click', '.colbtn', function () {
+                        var currenttr = $(this).closest("#colfilterpane");
+                        var colcode = currenttr.find("input[name=colcode]").val()
+                        // location.href = '/colorfilter/?color='+colcode;
+                        $.ajax({
+                            url: "{% url 'colorfilter' %}",
+                            method: "GET",
+                            data: { colcode: colcode },
+                            success: function (data) {
+
+                                // location.href = '/colorfilter/?color='+colcode;
+
+                            },
+                            error: function () {
+                                location.href = '/colorfilter/?color=' + colcode;
+                            },
+
+                        });//end ajax
+
+                    });//end function
+
+                    //size filter
+                    $("#shopagesidebar").on('click', '.sbtn', function () {
+                        var x = $(this).html()
+                        // console.log('hello', x)
+                        location.href = '/sizefilter/?size=' + x;
+
+                    });//end function
+
+                    // get color data 
+
+                    
 
 
                 }); //readyfunction

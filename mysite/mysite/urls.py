@@ -18,6 +18,10 @@ urlpatterns = [
     path('cartview/', cartview, name='cartview'), #cartview
     path('clearcart/', clearcart, name='clearcart'), #clearcart
     path('processtocheck/', processtocheck, name='processtocheck'), #processtocheck
+    
+    path('colorfilter/', colorfilter, name='colorfilter'),
+    path('sizefilter/', sizefilter, name='sizefilter'),
+    path('colordata/', colordata, name='colordata'),
 
     path('adminlogin', UserLoginView.as_view(), name = 'UserLoginView'),
     path('logout/', UserLogoutView.as_view(), name='UserLogoutView'),

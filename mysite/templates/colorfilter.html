@@ -107,7 +107,6 @@
                 </div>
                 <!--End Color Swatches-->
                 <!--Brand-->
-                <div id="col-list"></div>
 
                 <!--End Brand-->
                 <!--Popular Products-->
@@ -180,7 +179,7 @@
                                 <a href="/internecom/" class="grid-view-item__link">
                                     <!-- image -->
                                     <img class="grid-view-item__image primary blur-up lazyload"
-                                        data-src="{{i.photo.url}}" src="{{i.photo.url}}" alt="image" title="product">
+                                        data-src="{{i.items.photo.url}}" src="{{i.items.photo.url}}" alt="image" title="product">
                                     <!-- End image -->
                                     <!-- Hover image -->
                                     <img class="grid-view-item__image hover blur-up lazyload"
@@ -193,12 +192,12 @@
                                 <div class="product-details hoverDetails text-center mobile">
                                     <!-- product name -->
                                     <div class="product-name">
-                                        <a href="#">{{i.item_name}}</a>
+                                        <a href="#">{{i.items.item_name}}</a>
                                     </div>
                                     <!-- End product name -->
                                     <!-- product price -->
                                     <div class="product-price">
-                                        <span class="price">{{i.sell_price}} MMK</span>
+                                        <span class="price">{{i.items.sell_price}} MMK</span>
                                     </div>
                                     <!-- End product price -->
                                     <div class="product-review">
@@ -212,7 +211,7 @@
                                     <div class="button-set">
                                         <a href="javascript:void(0)" title="Quick View"
                                             class="quick-view-popup quick-view" data-toggle="modal"
-                                            data-target="#content_quickview-{{i.id}}">
+                                            data-target="#content_quickview-{{i.items.id}}">
                                             <i class="icon anm anm-search-plus-r"></i>
                                         </a>
                                         <!-- Start product button -->
@@ -221,13 +220,13 @@
                                                     class="icon anm anm-bag-l"></i></button>
                                         </form>
                                         <div class="wishlist-btn">
-                                            <input type="number" name="itmid" value="{{i.id}}" hidden>
+                                            <input type="number" name="itmid" value="{{i.items.id}}" hidden>
                                             <a class="wishlist add-to-wishlist" href="#" title="Add to Wishlist">
                                                 <i class="icon anm anm-heart-l"></i>
                                             </a>
                                         </div>
                                         <div class="compare-btn">
-                                            <a class="compare add-to-compare" href="compare.html"
+                                            <a class="compare add-to-compare" href="#"
                                                 title="Add to Compare">
                                                 <i class="icon anm anm-random-r"></i>
                                             </a>
@@ -239,7 +238,7 @@
                             </div>
                         </div>
                         <!--Quick View popup-->
-                        <div class="modal fade quick-view-popup" id="content_quickview-{{i.id}}">
+                        <div class="modal fade quick-view-popup" id="content_quickview-{{i.items.id}}">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-body">
@@ -255,14 +254,14 @@
                                                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                                         <div class="product-details-img">
                                                             <div class="pl-20">
-                                                                <img src="{{i.photo.url}}" alt="" />
+                                                                <img src="{{i.items.photo.url}}" alt="" />
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-6 col-md-6 col-sm-12 col-12">
                                                         <div class="product-single__meta">
                                                             <h2 class="product-single__title">
-                                                                {{i.item_name}}</h2>
+                                                                {{i.items.item_name}}</h2>
                                                             <div class="prInfoRow">
                                                                 <!-- <div class="product-stock"> <span class="instock ">In
                                                                         Stock</span>
@@ -285,7 +284,7 @@
                                                                 </span>
                                                             </p>
                                                             <div class="product-single__description rte">
-                                                                {{i.itm_description}}
+                                                                {{i.items.itm_description}}
                                                             </div>
 
                                                             <form accept-charset="UTF-8"

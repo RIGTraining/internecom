@@ -37,7 +37,7 @@ class ItmColor(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.color
+        return self.items.item_name
 
 class ItmSize(models.Model):
     items = models.ForeignKey(Items, on_delete=models.CASCADE)

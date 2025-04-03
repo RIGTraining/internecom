@@ -3,6 +3,7 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView, View, CreateView, DetailView,FormView
 from django.urls import reverse_lazy
+from django.db.models import Avg, Max, Min, Sum
 # Create your views here.
 # Import necessary modules and models
 from django.shortcuts import render, redirect
@@ -83,19 +84,57 @@ def register_page(request):
 @login_required(login_url='login_page')
 def shopview(request):
     itm = Items.objects.all()
+    max_price = itm.aggregate(Max('sell_price'))
     cat = Category.objects.all()
+    color_data = ItmColor.objects.values('color').distinct()
+    # print(max_price)
     cart_id = request.session.get('cart_id', None)
     if cart_id:
         cart = Cart.objects.get(id=cart_id)
-        context = {'itm':itm, 'cart':cart, 'cat':cat}
+        context = {'itm':itm, 'cart':cart, 'cat':cat, 'color_data':color_data, 'max_price':max_price}
         return render(request, 'shop.html', context)
     else:
         cart = None
-        context = {'itm':itm, 'cart':cart, 'cat':cat}
+        context = {'itm':itm, 'cart':cart, 'cat':cat, 'color_data':color_data, 'max_price':max_price}
         return render(request, 'shop.html', context)
     
-    
-    
+
+def colorfilter(request):
+    colcode = request.GET.get('color')
+    print(colcode)
+    cat = Category.objects.all()
+    color_data = ItmColor.objects.values('color').distinct()
+    itm = ItmColor.objects.filter(color__contains = colcode)
+    cart_id = request.session.get('cart_id', None)
+    if cart_id:
+        cart = Cart.objects.get(id=cart_id)
+        context = {'itm':itm, 'cart':cart, 'cat':cat, 'color_data':color_data}
+        return render(request, 'colorfilter.html', context)
+    else:
+        cart = None
+        context = {'itm':itm, 'cart':cart, 'cat':cat, 'color_data':color_data}
+        return render(request, 'colorfilter.html', context)
+
+def sizefilter(request):
+    size = request.GET.get('size')
+    cat = Category.objects.all()
+    color_data = ItmColor.objects.values('color').distinct()
+    itm = ItmSize.objects.filter(size__contains = size)
+    cart_id = request.session.get('cart_id', None)
+    if cart_id:
+        cart = Cart.objects.get(id=cart_id)
+        context = {'itm':itm, 'cart':cart, 'cat':cat, 'color_data':color_data}
+        return render(request, 'colorfilter.html', context)
+    else:
+        cart = None
+        context = {'itm':itm, 'cart':cart, 'cat':cat, 'color_data':color_data}
+        return render(request, 'colorfilter.html', context)
+       
+def colordata(request):
+    color_data = ItmColor.objects.values('color').distinct()
+    print(color_data)
+    return JsonResponse({'data':list(color_data)}, safe=False)
+        
 
 
 @login_required(login_url='login_page')

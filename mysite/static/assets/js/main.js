@@ -622,9 +622,9 @@
 	function price_slider(){
 		$("#slider-range").slider({
 			range: true,
-			min: 12,
-			max: 200,
-			values: [0, 100],
+			min: 1000,
+			max: 100000,
+			values: [1000, 100000],
 			slide: function(event, ui) {
 				$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
 			}
